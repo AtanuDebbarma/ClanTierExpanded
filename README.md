@@ -81,4 +81,4 @@ GNU GPL v3. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
 [mcm]: https://www.nexusmods.com/mountandblade2bannerlord/mods/612
 [cmt]: https://www.nexusmods.com/mountandblade2bannerlord/mods/14182
 [cple]: https://www.nexusmods.com/mountandblade2bannerlord/mods/14288
-[cpi]: https://github.com/AtanuDebbarma/CaravanPartyLimitIncreasedFixed
+[cpi]: https://www.nexusmods.com/mountandblade2bannerlord/mods/14505

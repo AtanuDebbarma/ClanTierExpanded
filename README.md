@@ -2,6 +2,8 @@
 
 A Mount & Blade II: Bannerlord mod that raises the clan tier ceiling above vanilla's tier 6, with formula or manual renown requirements in [Mod Configuration Menu (MCM)][mcm].
 
+**Download:** [Clan Tier Expanded on Nexus Mods][nexus]
+
 **Module id:** `ClanTierExpanded`
 
 ## About this mod
@@ -72,6 +74,7 @@ build.cmd /p:DeployToGame=true
 
 GNU GPL v3. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
+[nexus]: https://www.nexusmods.com/mountandblade2bannerlord/mods/14503
 [harmony]: https://www.nexusmods.com/mountandblade2bannerlord/mods/2006
 [butterlib]: https://www.nexusmods.com/mountandblade2bannerlord/mods/2018
 [uiextenderex]: https://www.nexusmods.com/mountandblade2bannerlord/mods/2102

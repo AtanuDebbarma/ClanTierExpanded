@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+  <Name value="Clan Tier Expanded"/>
+  <Id value="ClanTierExpanded"/>
+  <Version value="v1.0.1"/>
+  <DefaultModule value="false"/>
+  <ModuleCategory value="Singleplayer"/>
+  <ModuleType value="Community"/>
+  <Official value="false"/>
+  <DependedModules>
+    <DependedModule Id="Native" DependentVersion="v1.4.8"/>
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.4.8"/>
+    <DependedModule Id="Sandbox" DependentVersion="v1.4.8"/>
+    <DependedModule Id="StoryMode" Optional="true"/>
+    <DependedModule Id="NavalDLC" Optional="true"/>
+    <DependedModule Id="Bannerlord.Harmony" DependentVersion="v2.4.2.248"/>
+    <DependedModule Id="Bannerlord.MBOptionScreen" DependentVersion="v5.13.1"/>
+  </DependedModules>
+  <DependedModuleMetadatas>
+    <DependedModuleMetadata id="Native" order="LoadBeforeThis" version="v1.4.8"/>
+    <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" version="v1.4.8"/>
+    <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" version="v1.4.8"/>
+    <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" optional="true"/>
+    <DependedModuleMetadata id="NavalDLC" order="LoadBeforeThis" optional="true"/>
+    <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v2.4.2.248"/>
+    <DependedModuleMetadata id="Bannerlord.MBOptionScreen" order="LoadBeforeThis" version="v5.13.1"/>
+    <!-- Soft order only (not DependedModules): listing them there locks the launcher and blocks moving this mod above them. -->
+    <DependedModuleMetadata id="CompanionPartyLimitsExpanded" order="LoadAfterThis" optional="true"/>
+    <DependedModuleMetadata id="CaravanPartyLimitIncreasedFixed" order="LoadAfterThis" optional="true"/>
+  </DependedModuleMetadatas>
+  <SubModules>
+    <SubModule>
+      <Name value="ClanTierExpanded"/>
+      <DLLName value="ClanTierExpanded.dll"/>
+      <SubModuleClassType value="ClanTierExpanded.SubModule"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none"/>
+        <Tag key="IsNoRenderModeElement" value="false"/>
+      </Tags>
+    </SubModule>
+  </SubModules>
+</Module>

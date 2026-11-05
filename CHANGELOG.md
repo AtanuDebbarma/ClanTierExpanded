@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2
+
+- **AI diplomacy / kingdom scores.** War, peace, clan join/leave, mercenary, and story conspiracy clan-packing scores use vanilla-capped **party** limits (no Extra Parties; tier capped at 6 for that formula). Vanilla 1.4.8 does not read companion limits on those paths; companion limits are still capped during the same calls only for third-party scores that might. Real armies, actual party slots outside those scores, and Extra Parties for gameplay are unchanged. With Companion & Party Limits Expanded loaded, that mod's own shield still applies; CTE extras remain skipped.
+- Missing diplomacy / conspiracy shield targets report a red in-game message instead of failing silently.
+
 ## 1.0.1
 
 - Reconcile saved `Clan.Tier` on load and when tier-affecting MCM settings change (vanilla only raises tier on renown gain), including eliminated clans.

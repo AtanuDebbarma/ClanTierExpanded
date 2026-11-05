@@ -15,6 +15,7 @@ Inspired by **[Customizable Clan Tier](https://www.nexusmods.com/mountandblade2b
 - Raises max clan tier (default 12, up to 50) with formula or manual renown curves.
 - Recalculates saved clan tiers when you change settings or turn the mod off.
 - Optional high-tier party bonuses that step aside when Companion & Party Limits Expanded is loaded.
+- AI war, peace, join/leave, and related scores use vanilla-capped **party** limits so Extra Parties and high tiers do not inflate those decisions; real armies still count in full. (Vanilla does not use companion limits there; those are only capped during the same calls if another mod reads them.)
 - Optional soft support for Caravan Party Limit Increased Fixed (caravan size hard cap).
 
 ## Features
@@ -24,6 +25,7 @@ Inspired by **[Customizable Clan Tier](https://www.nexusmods.com/mountandblade2b
 | Max clan tier | 12 (6–50) |
 | Renown | Formula, or per-tier manual values |
 | Extra parties at high tiers | +1 at 7, 9, and 11 (off while CPLE is loaded) |
+| AI diplomacy scores | Vanilla-capped party limits during those scores |
 | Caravan size hard cap | Shown only with CaravanPartyLimitIncreasedFixed (default 500) |
 
 ## Mod options ([MCM][mcm])

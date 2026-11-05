@@ -113,6 +113,17 @@ namespace ClanTierExpanded
 
         public override int GetPartyLimitForTier(Clan clan, int clanTierToConsider)
         {
+            // AI war/join/leave and related scores: vanilla party caps only (no Extra Parties, tier capped at 6).
+            if (VanillaStrengthScope.IsActive)
+            {
+                int vanillaTier = clanTierToConsider;
+                if (vanillaTier > base.MaxClanTier)
+                    vanillaTier = base.MaxClanTier;
+                if (vanillaTier < MinClanTier)
+                    vanillaTier = MinClanTier;
+                return base.GetPartyLimitForTier(clan, vanillaTier);
+            }
+
             int limit = base.GetPartyLimitForTier(clan, clanTierToConsider);
 
             Settings settings = Settings.Instance;
@@ -129,6 +140,23 @@ namespace ClanTierExpanded
                 limit++;
             if (clanTierToConsider >= 11)
                 limit++;
+            return limit;
+        }
+
+        public override int GetCompanionLimit(Clan clan)
+        {
+            int limit = base.GetCompanionLimit(clan);
+            if (!VanillaStrengthScope.IsActive || clan == null)
+                return limit;
+
+            // Vanilla 1.4.8 diplomacy / conspiracy packing do not read CompanionLimit (they use party
+            // limits). Cap the tier portion anyway so a third-party score that does read it during the
+            // same shielded calls is not inflated by CTE tiers above 6.
+            int excess = clan.Tier - base.MaxClanTier;
+            if (excess > 0)
+                limit -= excess;
+            if (limit < 1)
+                limit = 1;
             return limit;
         }
     }

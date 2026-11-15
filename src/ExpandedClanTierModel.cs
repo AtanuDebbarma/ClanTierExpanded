@@ -59,8 +59,18 @@ namespace ClanTierExpanded
             for (int tier = MinClanTier + 1; tier <= max; tier++)
             {
                 int required = tier < limits.Length ? limits[tier] : limits[limits.Length - 1];
+                int previousRequired = 0;
+                if (tier - 1 >= 0)
+                    previousRequired = (tier - 1) < limits.Length ? limits[tier - 1] : limits[limits.Length - 1];
+
+                // Flat thresholds must not cascade promotion to the configured maximum.
+                if (required <= previousRequired)
+                    break;
+
                 if (clan.Renown >= required)
                     result = tier;
+                else
+                    break;
             }
             return result;
         }
@@ -149,7 +159,7 @@ namespace ClanTierExpanded
             if (!VanillaStrengthScope.IsActive || clan == null)
                 return limit;
 
-            // Vanilla 1.4.8 diplomacy / conspiracy packing do not read CompanionLimit (they use party
+            // Vanilla 1.5.7 diplomacy / conspiracy packing do not read CompanionLimit (they use party
             // limits). Cap the tier portion anyway so a third-party score that does read it during the
             // same shielded calls is not inflated by CTE tiers above 6.
             int excess = clan.Tier - base.MaxClanTier;

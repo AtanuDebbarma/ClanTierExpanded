@@ -10,7 +10,7 @@ using TaleWorlds.Localization;
 
 namespace ClanTierExpanded
 {
-    // Shields the same AI score surfaces as CPLE. Vanilla 1.4.8 reads party limits (WarPartyLimit) here,
+    // Shields the same AI score surfaces as CPLE. Vanilla 1.5.7 reads party limits (WarPartyLimit) here,
     // not companion limits; companion capping in ExpandedClanTierModel is only for third-party readers.
     internal static class VanillaStrengthPatches
     {

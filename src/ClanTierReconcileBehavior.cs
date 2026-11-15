@@ -93,14 +93,44 @@ namespace ClanTierExpanded
 
                 changed++;
                 if (!clan.IsEliminated)
-                    TryNotifyTierChanged(clan);
+                    TryNotifyTierChanged(clan, false);
             }
 
             if (changed > 0)
                 Debug.Print("[ClanTierExpanded] Reconciled clan tiers (" + reason + "): " + changed + " clan(s) updated.");
         }
 
-        private static bool TrySetTier(Clan clan, int tier)
+        // Sets Clan.Renown then recalculates Tier immediately (does not wait for settings reconcile).
+        // Vanilla Clan.AddRenown ignores negative values, so renown is assigned directly.
+        internal static bool ApplyRenownAndRecalculateTier(Clan clan, float newRenown, out int oldTier, out int newTier)
+        {
+            oldTier = 0;
+            newTier = 0;
+            if (clan == null || Campaign.Current == null || Campaign.Current.Models == null || Campaign.Current.Models.ClanTierModel == null)
+                return false;
+
+            if (newRenown < 0f)
+                newRenown = 0f;
+            if (float.IsNaN(newRenown) || float.IsInfinity(newRenown))
+                newRenown = 0f;
+
+            oldTier = clan.Tier;
+            clan.Renown = newRenown;
+            newTier = Campaign.Current.Models.ClanTierModel.CalculateTier(clan);
+            if (newTier == oldTier)
+                return true;
+
+            if (!TrySetTier(clan, newTier))
+            {
+                newTier = clan.Tier;
+                return false;
+            }
+
+            TryNotifyTierChanged(clan, false);
+            return true;
+        }
+
+        internal static bool TrySetTier(Clan clan, int tier)
         {
             try
             {
@@ -134,14 +164,14 @@ namespace ClanTierExpanded
             return false;
         }
 
-        private static void TryNotifyTierChanged(Clan clan)
+        internal static void TryNotifyTierChanged(Clan clan, bool shouldNotify)
         {
             try
             {
                 if (OnClanTierChangedMethod == null || CampaignEventDispatcher.Instance == null)
                     return;
 
-                OnClanTierChangedMethod.Invoke(CampaignEventDispatcher.Instance, new object[] { clan, false });
+                OnClanTierChangedMethod.Invoke(CampaignEventDispatcher.Instance, new object[] { clan, shouldNotify });
             }
             catch
             {

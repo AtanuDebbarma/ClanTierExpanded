@@ -8,7 +8,7 @@ using TaleWorlds.MountAndBlade;
 
 namespace ClanTierExpanded
 {
-    // Clan Tier Expanded for Bannerlord 1.4.8 (module id ClanTierExpanded).
+    // Clan Tier Expanded for Bannerlord 1.5.7 (module id ClanTierExpanded).
     public class SubModule : MBSubModuleBase
     {
         public const string HarmonyId = "com.atanu.bannerlord.ClanTierExpanded";
@@ -43,6 +43,9 @@ namespace ClanTierExpanded
             // ClanTierReconcileBehavior rewrites saved Clan.Tier on load / setting changes.
             campaignStarter.AddModel(new ExpandedClanTierModel());
             campaignStarter.AddBehavior(new ClanTierReconcileBehavior());
+            campaignStarter.AddBehavior(new RenownDeclineBehavior());
+            campaignStarter.AddBehavior(new RulerChallengeBehavior());
+            campaignStarter.AddBehavior(new DynastyBonusBehavior());
         }
 
         // Diplomacy / StoryMode targets are final here, including replacements from other mods.
